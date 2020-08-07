@@ -4,9 +4,9 @@ import ListArea from './listArea';
 
 export default () => {
   return (
-    <div className={styles.m_wrap}>
-      <div className={styles.m_head}></div>
-      <div className={styles.m_musicHall}>
+    <div className={styles.menu_wrap}>
+      <div className={styles.menu_head}></div>
+      <div className={styles.menu_musicHall}>
         <ListArea />
       </div>
     </div>

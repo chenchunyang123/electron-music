@@ -5,23 +5,23 @@ import './reset.css';
 
 import PMenu from '@/components/p-menu';
 import PNavbar from '@/components/p-navbar';
-import PPlaybar from '@/components/p-playbar'
+import PPlaybar from '@/components/p-playbar';
 
-export default function Layout({
+export default ({
   children,
   location,
   route,
   history,
   match,
-}: IRouteComponentProps) {
+}: IRouteComponentProps) => {
   return (
     <div className={styles.i_wrap}>
       <PMenu />
       <div className={styles.i_container}>
         <PNavbar />
-        { children }
+        <div className={styles.i_inner}>{children}</div>
+        <PPlaybar />
       </div>
-      <PPlaybar />
     </div>
   );
-}
+};

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './index.less';
-
 export default () => {
-  return <div className={styles.navbar_wrap}></div>;
+  return <div>singer</div>;
 };

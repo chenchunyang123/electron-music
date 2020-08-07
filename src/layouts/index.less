@@ -4,8 +4,15 @@
   display: flex;
 
   .i_container {
-    background-color: green;
-    flex: 1;
+    background-color: rgb(23, 23, 24);
+    color: #fff;
+    flex-grow: 1;
     height: 100%;
+
+    .i_inner {
+      padding: 0 40px;
+      height: calc(100vh - 50px - 60px);
+      overflow-y: auto;
+    }
   }
 }
