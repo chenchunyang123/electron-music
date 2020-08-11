@@ -9,7 +9,8 @@ app.on('ready', () => {
     minWidth: 1024,
     minHeight: 680,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
+      preload: __dirname + '/preload.js',
     },
     titleBarStyle: 'hidden',
   });

@@ -68,6 +68,11 @@ export default defineConfig({
           path: '/musicstation',
           component: '@/pages/musicStation/index',
         },
+        {
+          exact: true,
+          path: '/mv/detail',
+          component: '@/pages/browserWindow/mvDetail/index',
+        },
       ],
     },
   ],

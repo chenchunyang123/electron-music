@@ -1,7 +1,6 @@
 import React from 'react';
 import { IRouteComponentProps } from 'umi';
 import styles from './index.less';
-import './reset.css';
 
 import PMenu from '@/components/p-menu';
 import PNavbar from '@/components/p-navbar';
@@ -14,6 +13,12 @@ export default ({
   history,
   match,
 }: IRouteComponentProps) => {
+  // 针对不同的路由用不同的模版
+  if (location.pathname === '/mv/detail') {
+    // mv详情
+    return <>{children}</>;
+  }
+
   return (
     <div className={styles.i_wrap}>
       <PMenu />

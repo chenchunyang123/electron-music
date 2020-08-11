@@ -1,5 +1,3 @@
-import selected from './selected';
+import apiMv from './mv';
 
-export default {
-  selected,
-};
+export { apiMv };

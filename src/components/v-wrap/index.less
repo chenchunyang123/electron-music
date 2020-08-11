@@ -10,8 +10,10 @@
   }
 
   .w_container {
-    width: 100%;
-    height: 100%;
+    width: calc(100% + 60px);
+    padding: 0 30px;
+    position: relative;
+    left: -30px;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
@@ -22,7 +24,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    display: none;
 
     div {
       width: 20px;
@@ -42,6 +44,6 @@
   }
 
   .w_visible {
-    display: none;
+    display: block;
   }
 }

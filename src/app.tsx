@@ -1,3 +1,5 @@
+import './reset.css';
+
 export const dva = {
   config: {
     onError(e: Error) {
