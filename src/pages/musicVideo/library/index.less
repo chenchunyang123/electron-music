@@ -1,0 +1,39 @@
+.lib_wrap {
+  width: 100%;
+
+  .lib_content {
+    .lib_contentTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h2 {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 400;
+        margin: 0;
+      }
+
+      .lib_order {
+        display: flex;
+        width: 150px;
+        justify-content: space-between;
+
+        div:hover {
+          cursor: pointer;
+          color: rgb(36, 196, 130);
+        }
+
+        div.lib_activeOrder {
+          color: rgb(36, 196, 130);
+        }
+      }
+    }
+
+    .lib_contentBottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+}

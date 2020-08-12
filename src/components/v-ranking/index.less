@@ -5,10 +5,40 @@
 .mb_wrap {
   display: flex;
   align-items: center;
+  color: #fff;
+  margin-bottom: 25px;
 
   .mb_rank {
+    margin-right: 50px;
   }
 
   .mb_rightContent {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 140px;
+      height: 85px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .mb_desc {
+      p {
+        font-size: 12px;
+        line-height: 22px;
+        cursor: pointer;
+
+        &:hover {
+          color: rgb(36, 196, 130);
+        }
+      }
+
+      p:last-child {
+        color: #999;
+        cursor: default;
+      }
+    }
   }
 }

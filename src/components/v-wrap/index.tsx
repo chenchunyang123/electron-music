@@ -4,9 +4,13 @@ import classnames from 'classnames';
 
 import VMv from '@/components/v-mv';
 
+interface IObjArray {
+  [index: number]: { [props: string]: any };
+}
+
 interface IVwrap {
   title: string;
-  list: {}[];
+  list: Array<IObjArray>;
 }
 
 interface IMvDetail {
