@@ -73,6 +73,16 @@ export default defineConfig({
           path: '/mv/detail',
           component: '@/pages/browserWindow/mvDetail/index',
         },
+        {
+          exact: true,
+          path: '/singer/detail',
+          component: '@/pages/musicHall/singer/detail/index',
+        },
+        {
+          exact: true,
+          path: '/singer/albums',
+          component: '@/pages/musicHall/singer/albums/index',
+        },
       ],
     },
   ],

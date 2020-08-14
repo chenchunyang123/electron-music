@@ -1,3 +1,4 @@
 import apiMv from './mv';
+import apiMusic from './music';
 
-export { apiMv };
+export { apiMv, apiMusic };

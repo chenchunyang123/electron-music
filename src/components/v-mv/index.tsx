@@ -8,7 +8,7 @@ interface IMv {
 }
 
 export default (props: IMv) => {
-  const { cover, name, artistName, id } = props.detail;
+  const { cover, name, artistName, id, imgurl } = props.detail;
   const handleToMV = () => {
     let win = new remote.BrowserWindow({
       width: 800,
@@ -24,9 +24,9 @@ export default (props: IMv) => {
 
   return (
     <div className={styles.mv_wrap}>
-      <img src={cover} alt="" onClick={handleToMV} />
+      <img src={cover || imgurl} alt="" onClick={handleToMV} />
       <div className={styles.mv_name}>{name}</div>
-      <div className={styles.mv_artistName}>{artistName}</div>
+      {imgurl ? null : <div className={styles.mv_artistName}>{artistName}</div>}
     </div>
   );
 };
