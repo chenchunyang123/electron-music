@@ -1,7 +1,62 @@
 .playbar_wrap {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  left: 200px;
+  width: calc(100vw - 200px);
   height: 60px;
   background-color: dodgerblue;
+
+  .play_content {
+    height: 60px;
+    display: flex;
+    padding: 0 40px;
+    align-items: center;
+    justify-content: space-between;
+
+    .play_contentLeft {
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+      }
+
+      span:first-of-type {
+        margin-left: 10px;
+      }
+    }
+
+    .play_contentCenter {
+      display: flex;
+      align-items: center;
+      width: 200px;
+      justify-content: space-between;
+
+      > :nth-child(1) {
+        font-size: 18px;
+      }
+
+      > :nth-last-child(1) {
+        font-size: 22px;
+      }
+
+      > :nth-child(2),
+      > :nth-last-child(2) {
+        transform: scaleY(0.7);
+      }
+    }
+
+    .play_contentRight {
+      span {
+        margin-right: 10px;
+      }
+
+      .play_listIcon {
+        cursor: pointer;
+
+        &:hover {
+          color: rgb(36, 196, 130);
+        }
+      }
+    }
+  }
 }
