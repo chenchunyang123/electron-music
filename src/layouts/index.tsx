@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IRouteComponentProps } from 'umi';
 import styles from './index.less';
 
 import PMenu from '@/components/p-menu';
 import PNavbar from '@/components/p-navbar';
 import PPlaybar from '@/components/p-playbar';
+import PPlayList from '@/components/p-playList';
+import PMusicMain from '@/components/p-musicMain';
 
 export default ({
   children,
@@ -13,6 +15,9 @@ export default ({
   history,
   match,
 }: IRouteComponentProps) => {
+  const [playListVisible, setPlVisible] = useState(false); // 当前播放列表侧边栏显隐
+  const togglePlV = () => setPlVisible(!playListVisible);
+
   // 针对不同的路由用不同的模版
   if (location.pathname === '/mv/detail') {
     // mv详情
@@ -23,9 +28,11 @@ export default ({
     <div className={styles.i_wrap}>
       <PMenu />
       <div className={styles.i_container}>
-        <PNavbar />
+        <PNavbar history={history} />
         <div className={styles.i_inner}>{children}</div>
-        <PPlaybar />
+        <PPlayList visible={playListVisible} />
+        <PPlaybar togglePlVisible={togglePlV} />
+        <PMusicMain />
       </div>
     </div>
   );

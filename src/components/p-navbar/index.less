@@ -1,6 +1,58 @@
 .navbar_wrap {
   width: 100%;
-  height: 50px;
-  background-color: indianred;
+  height: 70px;
+  background-color: rgb(23, 23, 24);
   -webkit-app-region: drag;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+
+  .navbar_left {
+    margin-right: 30px;
+    transform: scaleY(1.2);
+    color: #666;
+    cursor: pointer;
+  }
+
+  .navbar_right {
+    margin-right: 20px;
+    transform: scaleY(1.2);
+    color: #666;
+    cursor: pointer;
+  }
+
+  .navbar_input {
+    position: relative;
+
+    input {
+      width: 200px;
+      height: 32px;
+      border: none;
+      outline: none;
+      background-color: rgb(40, 40, 41);
+      border-radius: 32px;
+      padding: 0 30px 4px 40px;
+      font-size: 12px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .navbar_search {
+      position: absolute;
+      top: 8px;
+      left: 18px;
+      color: #666;
+      cursor: pointer;
+    }
+
+    .navbar_clear {
+      position: absolute;
+      top: 8px;
+      right: 14px;
+      color: #666;
+      cursor: pointer;
+    }
+  }
 }

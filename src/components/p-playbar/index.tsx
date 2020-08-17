@@ -13,13 +13,17 @@ import {
   faVolumeMute,
 } from '@fortawesome/free-solid-svg-icons';
 
-export default () => {
+import Progress from './progress';
+
+export default (props: { togglePlVisible: () => void }) => {
+  const { togglePlVisible } = props;
   return (
     <div className={styles.playbar_wrap}>
       {/* 进度条 */}
+      <Progress />
       {/* 信息展示 */}
-      <div className={styles.play_content}>
-        <div className={styles.play_contentLeft}>
+      <div className={styles.playbar_content}>
+        <div className={styles.playbar_contentLeft}>
           <img
             src="http://p3.music.126.net/5a8JbNUEwmlzspiPYr8MDQ==/109951164538801813.jpg"
             alt=""
@@ -28,7 +32,7 @@ export default () => {
           <span>&nbsp;-&nbsp;</span>
           <span>李荣浩</span>
         </div>
-        <div className={styles.play_contentCenter}>
+        <div className={styles.playbar_contentCenter}>
           <FontAwesomeIcon icon={faRandom} />
           <FontAwesomeIcon icon={faStepBackward} size="2x" />
           <FontAwesomeIcon
@@ -39,9 +43,14 @@ export default () => {
           <FontAwesomeIcon icon={faStepForward} size="2x" />
           <FontAwesomeIcon icon={faVolumeDown} />
         </div>
-        <div className={styles.play_contentRight}>
+        <div className={styles.playbar_contentRight}>
           <span>00:00 / 04:33</span>
-          <FontAwesomeIcon icon={faList} className={styles.play_listIcon} />
+          <div onClick={() => togglePlVisible()}>
+            <FontAwesomeIcon
+              icon={faList}
+              className={styles.playbar_listIcon}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,80 @@
+// list组件样式
+.pl_wrap {
+  width: 320px;
+  height: calc(100vh - 80px);
+  background-color: rgb(31, 31, 32);
+  position: fixed;
+  // right: 0;
+  top: 0;
+  transition: right 0.5s;
+
+  .pl_head {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    padding-top: 10px;
+
+    span:nth-child(1) {
+      font-size: 20px;
+    }
+
+    span:nth-child(2) {
+      font-size: 12px;
+    }
+  }
+
+  .pl_listWrap {
+    width: 100%;
+    height: calc(100vh - 70px - 80px); // 减了头部和下面播放条组件的高度
+    overflow-y: auto;
+  }
+}
+
+// 一个歌item的样式
+.si_wrap {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  border-bottom: 1px solid #333;
+  padding: 0 15px;
+  position: relative;
+
+  img {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+  }
+
+  .si_names {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > span {
+    flex-grow: 1;
+    text-align: right;
+  }
+
+  &:hover {
+    background-color: rgb(39, 39, 41);
+  }
+
+  // 当前活动的item样式
+  &.si_active {
+    color: rgb(36, 196, 130);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background-color: rgb(36, 196, 130);
+    }
+  }
+}
