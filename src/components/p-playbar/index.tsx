@@ -12,13 +12,18 @@ import {
   faVolumeDown,
   faVolumeMute,
 } from '@fortawesome/free-solid-svg-icons';
+import classnames from 'classnames';
 
 import Progress from './progress';
 
-export default (props: { togglePlVisible: () => void }) => {
-  const { togglePlVisible } = props;
+export default (props: {
+  togglePlVisible: () => void;
+  classNames?: string;
+  openMmV?: () => void;
+}) => {
+  const { togglePlVisible, classNames, openMmV } = props;
   return (
-    <div className={styles.playbar_wrap}>
+    <div className={classnames(styles.playbar_wrap, classNames)}>
       {/* 进度条 */}
       <Progress />
       {/* 信息展示 */}
@@ -27,6 +32,7 @@ export default (props: { togglePlVisible: () => void }) => {
           <img
             src="http://p3.music.126.net/5a8JbNUEwmlzspiPYr8MDQ==/109951164538801813.jpg"
             alt=""
+            onClick={openMmV ? openMmV : undefined}
           />
           <span>麻雀</span>
           <span>&nbsp;-&nbsp;</span>

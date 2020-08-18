@@ -16,7 +16,10 @@ export default ({
   match,
 }: IRouteComponentProps) => {
   const [playListVisible, setPlVisible] = useState(false); // 当前播放列表侧边栏显隐
+  const [musicMainVisible, setMmVisible] = useState(true); // 播放控制器主界面显隐
   const togglePlV = () => setPlVisible(!playListVisible);
+  const closeMmV = () => setMmVisible(false);
+  const openMmV = () => setMmVisible(true);
 
   // 针对不同的路由用不同的模版
   if (location.pathname === '/mv/detail') {
@@ -31,8 +34,12 @@ export default ({
         <PNavbar history={history} />
         <div className={styles.i_inner}>{children}</div>
         <PPlayList visible={playListVisible} />
-        <PPlaybar togglePlVisible={togglePlV} />
-        <PMusicMain />
+        <PPlaybar togglePlVisible={togglePlV} openMmV={openMmV} />
+        <PMusicMain
+          togglePlVisible={togglePlV}
+          visible={musicMainVisible}
+          close={closeMmV}
+        />
       </div>
     </div>
   );

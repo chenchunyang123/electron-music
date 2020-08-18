@@ -8,6 +8,8 @@ app.on('ready', () => {
     height: 700,
     minWidth: 1024,
     minHeight: 680,
+    maxWidth: 1024,
+    maxHeight: 680,
     webPreferences: {
       nodeIntegration: false,
       preload: __dirname + '/preload.js',
