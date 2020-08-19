@@ -13,15 +13,26 @@ import {
   faVolumeMute,
 } from '@fortawesome/free-solid-svg-icons';
 import classnames from 'classnames';
+import { connect, IAllModelState, ConnectProps } from 'umi';
 
 import Progress from './progress';
 
-export default (props: {
+interface IPlayBarProps {
+  all: IAllModelState;
   togglePlVisible: () => void;
   classNames?: string;
   openMmV?: () => void;
+  dispatch: ConnectProps['dispatch'];
+}
+
+const PlayBar: React.FC<IPlayBarProps> = ({
+  togglePlVisible,
+  classNames,
+  openMmV,
+  all,
+  dispatch,
 }) => {
-  const { togglePlVisible, classNames, openMmV } = props;
+  const { playing, nowMusicDetail } = all;
   return (
     <div className={classnames(styles.playbar_wrap, classNames)}>
       {/* 进度条 */}
@@ -30,21 +41,28 @@ export default (props: {
       <div className={styles.playbar_content}>
         <div className={styles.playbar_contentLeft}>
           <img
-            src="http://p3.music.126.net/5a8JbNUEwmlzspiPYr8MDQ==/109951164538801813.jpg"
+            src={nowMusicDetail.al?.picUrl}
             alt=""
             onClick={openMmV ? openMmV : undefined}
           />
-          <span>麻雀</span>
+          <span>{nowMusicDetail?.name}</span>
           <span>&nbsp;-&nbsp;</span>
-          <span>李荣浩</span>
+          <span>{nowMusicDetail.ar && nowMusicDetail.ar[0].name}</span>
         </div>
         <div className={styles.playbar_contentCenter}>
           <FontAwesomeIcon icon={faRandom} />
           <FontAwesomeIcon icon={faStepBackward} size="2x" />
           <FontAwesomeIcon
-            icon={faPlayCircle}
+            icon={playing ? faPauseCircle : faPlayCircle}
             size="3x"
             color="rgb(36, 196, 130)"
+            onClick={() =>
+              dispatch &&
+              dispatch({
+                type: 'all/setPlaying',
+                payload: playing ? false : true,
+              })
+            }
           />
           <FontAwesomeIcon icon={faStepForward} size="2x" />
           <FontAwesomeIcon icon={faVolumeDown} />
@@ -62,3 +80,7 @@ export default (props: {
     </div>
   );
 };
+
+export default connect(({ all }: { all: IAllModelState }) => ({
+  all,
+}))(PlayBar);

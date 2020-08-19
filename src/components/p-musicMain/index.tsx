@@ -20,26 +20,23 @@ const MusicMain: React.FC<IMusicMainPageProps> = ({
   visible,
   close,
 }) => {
-  // const { nowAudioId } = all;
+  const { nowMusicDetail } = all;
   return (
     <div className={styles.mm_wrap} style={{ top: visible ? '0' : '100%' }}>
       <div className={styles.mm_down} onClick={close}>
         <FontAwesomeIcon icon={faChevronDown} color="#999" />
       </div>
       <div className={styles.mm_content}>
-        <img
-          src="http://file06.16sucai.com/2016/0506/6ff4d8c8e7714e84347356f7fd1092d4.jpg"
-          alt=""
-        />
+        <img src={nowMusicDetail.al?.picUrl} alt="" />
         <div className={styles.mm_lyricsWrap}>
-          <h3>麻雀</h3>
+          <h3>{nowMusicDetail?.name}</h3>
           <div>
             <span>歌手：</span>
-            <span>李荣浩</span>
+            <span>{nowMusicDetail.ar && nowMusicDetail.ar[0].name}</span>
           </div>
           <div>
             <span>专辑：</span>
-            <span>麻雀</span>
+            <span>{nowMusicDetail.al?.name}</span>
           </div>
           <div></div>
         </div>

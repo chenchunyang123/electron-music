@@ -14,6 +14,8 @@
     justify-content: space-between;
 
     .playbar_contentLeft {
+      width: 33%;
+
       img {
         width: 40px;
         height: 40px;
@@ -26,6 +28,7 @@
     }
 
     .playbar_contentCenter {
+      width: 33%;
       display: flex;
       align-items: center;
       width: 200px;
@@ -43,10 +46,16 @@
       > :nth-last-child(2) {
         transform: scaleY(0.7);
       }
+
+      svg {
+        cursor: pointer;
+      }
     }
 
     .playbar_contentRight {
+      width: 33%;
       display: flex;
+      justify-content: flex-end;
 
       span {
         margin-right: 10px;

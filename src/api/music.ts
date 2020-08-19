@@ -46,4 +46,13 @@ export default {
   getAlbumComments(id: ID) {
     return myAxios.get(`/comment/album?id=${id}`);
   },
+  getMusicUrl(id: ID) {
+    return myAxios.get(`/song/url?id=${id}`);
+  },
+  getMusicDetail(id: ID) {
+    return myAxios.get(`/song/detail?ids=${id}`);
+  },
+  getMusicLyric(id: ID) {
+    return myAxios.get(`/lyric?id=${id}`);
+  },
 };

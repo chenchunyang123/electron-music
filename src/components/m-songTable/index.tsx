@@ -4,6 +4,7 @@ import React from 'react';
 import styles from './index.less';
 import { Table } from 'antd';
 import { Resizable } from 'react-resizable';
+import { connect } from 'umi';
 
 const ResizableTitle = (props: any) => {
   const { onResize, width, ...restProps } = props;
@@ -86,6 +87,7 @@ class Demo extends React.Component {
     const data = list.map((item, idx) => {
       return {
         key: idx,
+        id: item.id,
         title: item.name,
         artist: item.ar.map(artist => artist.name).join(' / '),
         album: item.al.name,
@@ -109,6 +111,15 @@ class Demo extends React.Component {
           columns={columns}
           dataSource={data}
           pagination={false}
+          onRow={record => {
+            return {
+              onDoubleClick: event =>
+                this.props.dispatch({
+                  type: 'all/getMusicAllDetailsAndPlay',
+                  payload: record.id,
+                }),
+            };
+          }}
         />
         ;
       </div>
@@ -116,4 +127,4 @@ class Demo extends React.Component {
   }
 }
 
-export default Demo;
+export default connect()(Demo);
