@@ -8,6 +8,7 @@ export interface IAllModelState {
   nowMusicUrl: string;
   audioElement: null | HTMLAudioElement;
   playing: boolean;
+  nowMusicTime: number;
 }
 
 interface IAllModelType {
@@ -34,6 +35,7 @@ const IndexModel: IAllModelType = {
     nowMusicUrl: '',
     audioElement: null,
     playing: false,
+    nowMusicTime: 0,
   },
   reducers: {
     setAudioElement(state, { payload }: { payload: HTMLAudioElement }) {
@@ -76,6 +78,9 @@ const IndexModel: IAllModelType = {
         ...state,
         playing: payload,
       };
+    },
+    setNowMusicTime(state, { payload }: { payload: number }) {
+      return { ...state, nowMusicTime: payload };
     },
   },
   effects: {

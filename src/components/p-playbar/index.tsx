@@ -16,6 +16,7 @@ import classnames from 'classnames';
 import { connect, IAllModelState, ConnectProps } from 'umi';
 
 import Progress from './progress';
+import { formatSecToMin } from '@/utils';
 
 interface IPlayBarProps {
   all: IAllModelState;
@@ -32,7 +33,7 @@ const PlayBar: React.FC<IPlayBarProps> = ({
   all,
   dispatch,
 }) => {
-  const { playing, nowMusicDetail } = all;
+  const { playing, nowMusicDetail, nowMusicTime } = all;
   return (
     <div className={classnames(styles.playbar_wrap, classNames)}>
       {/* 进度条 */}
@@ -68,7 +69,10 @@ const PlayBar: React.FC<IPlayBarProps> = ({
           <FontAwesomeIcon icon={faVolumeDown} />
         </div>
         <div className={styles.playbar_contentRight}>
-          <span>00:00 / 04:33</span>
+          <span>
+            {formatSecToMin(nowMusicTime)} /{' '}
+            {formatSecToMin(nowMusicDetail.dt ? nowMusicDetail.dt / 1000 : 0)}
+          </span>
           <div onClick={() => togglePlVisible()}>
             <FontAwesomeIcon
               icon={faList}

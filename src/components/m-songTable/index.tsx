@@ -6,6 +6,8 @@ import { Table } from 'antd';
 import { Resizable } from 'react-resizable';
 import { connect } from 'umi';
 
+import { formatSecToMin } from '@/utils';
+
 const ResizableTitle = (props: any) => {
   const { onResize, width, ...restProps } = props;
 
@@ -58,7 +60,7 @@ class Demo extends React.Component {
       },
       {
         title: '时长',
-        dataIndex: 'time',
+        dataIndex: 'duration',
         width: 100,
       },
     ],
@@ -83,7 +85,6 @@ class Demo extends React.Component {
 
   render() {
     const { list } = this.props;
-    console.log(list);
     const data = list.map((item, idx) => {
       return {
         key: idx,
@@ -91,7 +92,7 @@ class Demo extends React.Component {
         title: item.name,
         artist: item.ar.map(artist => artist.name).join(' / '),
         album: item.al.name,
-        time: '数据未找到',
+        duration: formatSecToMin(item.dt / 1000),
       };
     });
 

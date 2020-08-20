@@ -35,12 +35,23 @@ const Layout: React.FC<ILayoutProps> = ({
   const audioElement = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
+    const dom = audioElement.current as HTMLAudioElement;
     // 得到一个全局的audio标签放到dva的state里面
     if (dispatch) {
       dispatch({
         type: 'all/setAudioElement',
-        payload: audioElement.current,
+        payload: dom,
       });
+      // 绑定监听音乐播放的方法
+      dom.ontimeupdate = e => {
+        // 因为1s内会触发多次，影响性能，这里后面需要优化
+        dispatch({
+          type: 'all/setNowMusicTime',
+          payload: dom.currentTime,
+        });
+      };
+    } else {
+      console.error('dispatch没传入layout');
     }
   }, []);
 
