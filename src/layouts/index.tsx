@@ -35,6 +35,9 @@ const Layout: React.FC<ILayoutProps> = ({
   const audioElement = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
+    if (location.pathname === '/mv/detail') {
+      return;
+    }
     const dom = audioElement.current as HTMLAudioElement;
     // 得到一个全局的audio标签放到dva的state里面
     if (dispatch) {

@@ -14,7 +14,6 @@ const Progress: React.FC<IProgressProps> = ({ all }) => {
   useEffect(() => {
     if (nowMusicDetail.dt) {
       const musicDuration = nowMusicDetail.dt / 1000;
-      console.log(+((nowMusicTime / musicDuration) * 100).toFixed(2));
       setPercentage(+((nowMusicTime / musicDuration) * 100).toFixed(2));
     }
   }, [nowMusicTime]);

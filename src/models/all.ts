@@ -9,6 +9,7 @@ export interface IAllModelState {
   audioElement: null | HTMLAudioElement;
   playing: boolean;
   nowMusicTime: number;
+  playList: Array<object>;
 }
 
 interface IAllModelType {
@@ -36,6 +37,7 @@ const IndexModel: IAllModelType = {
     audioElement: null,
     playing: false,
     nowMusicTime: 0,
+    playList: [],
   },
   reducers: {
     setAudioElement(state, { payload }: { payload: HTMLAudioElement }) {
@@ -82,14 +84,17 @@ const IndexModel: IAllModelType = {
     setNowMusicTime(state, { payload }: { payload: number }) {
       return { ...state, nowMusicTime: payload };
     },
+    setPlayList(state, { payload }: { payload: Array<object> }) {
+      return { ...state, playList: payload };
+    },
   },
   effects: {
     *getMusicAllDetailsAndPlay({ payload: id }, { call, put }) {
       yield put({ type: 'setPlaying', payload: false });
+      yield put({ type: 'setNowMusicId', payload: id });
       const { data: resMusicUrl } = yield call(apiMusic.getMusicUrl, id);
       const { data: resMusicLyric } = yield call(apiMusic.getMusicLyric, id);
       const { data: resMusicDetail } = yield call(apiMusic.getMusicDetail, id);
-      yield put({ type: 'setNowMusicId', payload: id });
       yield put({ type: 'setNowMusicUrl', payload: resMusicUrl.data[0].url });
       yield put({ type: 'setNowMusicLyric', payload: resMusicLyric.lrc.lyric });
       yield put({

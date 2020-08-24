@@ -48,7 +48,10 @@ const PlayBar: React.FC<IPlayBarProps> = ({
           />
           <span>{nowMusicDetail?.name}</span>
           <span>&nbsp;-&nbsp;</span>
-          <span>{nowMusicDetail.ar && nowMusicDetail.ar[0].name}</span>
+          <span>
+            {nowMusicDetail.ar &&
+              nowMusicDetail.ar.map(artist => artist.name).join(' / ')}
+          </span>
         </div>
         <div className={styles.playbar_contentCenter}>
           <FontAwesomeIcon icon={faRandom} />

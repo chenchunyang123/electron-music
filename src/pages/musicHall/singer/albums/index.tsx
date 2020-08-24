@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.less';
-import { IRouteComponentProps } from 'umi';
+import {
+  IRouteComponentProps,
+  connect,
+  IAllModelState,
+  ConnectProps,
+} from 'umi';
 import { Tabs } from 'antd';
 import moment from 'moment';
 
@@ -43,7 +48,12 @@ const renderTabPane = (
   }
 };
 
-export default ({ location }: IRouteComponentProps) => {
+interface IAlbumsProps extends IRouteComponentProps {
+  all: IAllModelState;
+  dispatch: ConnectProps['dispatch'];
+}
+
+const Albums: React.FC<IAlbumsProps> = ({ location, dispatch, all }) => {
   const { id } = location.query as { id: number };
   const [activeKey, setKey] = useState('0');
   const [detail, setDetail] = useState(''); // 专辑详情
@@ -72,6 +82,23 @@ export default ({ location }: IRouteComponentProps) => {
     }
   }, [activeKey]);
 
+  const addAllToPlayList = () => {
+    console.log(songs);
+    if (dispatch) {
+      // 将所有歌曲信息保存到播放列表
+      dispatch({
+        type: 'all/setPlayList',
+        payload: songs,
+      });
+      const firstSongId = songs[0].id;
+      // 找到第一首歌播放
+      dispatch({
+        type: 'all/getMusicAllDetailsAndPlay',
+        payload: firstSongId,
+      });
+    }
+  };
+
   return (
     <div className={styles.as_wrap}>
       <div className={styles.as_top}>
@@ -81,7 +108,7 @@ export default ({ location }: IRouteComponentProps) => {
           <p>{albumObj.artists?.map((item: any) => item.name).join(' / ')}</p>
           <p>{moment(albumObj.publishTime).format('YYYY-MM-DD')}</p>
           <div className={styles.as_btnsWrap}>
-            <div>播放全部</div>
+            <div onClick={addAllToPlayList}>播放全部</div>
           </div>
         </div>
       </div>
@@ -89,7 +116,7 @@ export default ({ location }: IRouteComponentProps) => {
         <Tabs defaultActiveKey={activeKey} onChange={key => setKey(key)}>
           {TABS.map((item, idx) => (
             <TabPane tab={item} key={idx}>
-              {renderTabPane(idx, detail, songs, commentObj, songs)}
+              {renderTabPane(idx, detail, songs, commentObj)}
             </TabPane>
           ))}
         </Tabs>
@@ -97,3 +124,7 @@ export default ({ location }: IRouteComponentProps) => {
     </div>
   );
 };
+
+export default connect(({ all }: { all: IAllModelState }) => ({
+  all,
+}))(Albums);

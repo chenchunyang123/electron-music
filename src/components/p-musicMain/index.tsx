@@ -32,7 +32,10 @@ const MusicMain: React.FC<IMusicMainPageProps> = ({
           <h3>{nowMusicDetail?.name}</h3>
           <div>
             <span>歌手：</span>
-            <span>{nowMusicDetail.ar && nowMusicDetail.ar[0].name}</span>
+            <span>
+              {nowMusicDetail.ar &&
+                nowMusicDetail.ar.map(artist => artist.name).join(' / ')}
+            </span>
           </div>
           <div>
             <span>专辑：</span>

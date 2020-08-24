@@ -114,11 +114,18 @@ class Demo extends React.Component {
           pagination={false}
           onRow={record => {
             return {
-              onDoubleClick: event =>
+              onDoubleClick: event => {
+                // 放当前双击的歌
                 this.props.dispatch({
                   type: 'all/getMusicAllDetailsAndPlay',
                   payload: record.id,
-                }),
+                });
+                // 把当前的播放列表替换
+                this.props.dispatch({
+                  type: 'all/setPlayList',
+                  payload: list,
+                });
+              },
             };
           }}
         />
