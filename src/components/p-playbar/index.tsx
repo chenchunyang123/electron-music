@@ -55,7 +55,16 @@ const PlayBar: React.FC<IPlayBarProps> = ({
         </div>
         <div className={styles.playbar_contentCenter}>
           <FontAwesomeIcon icon={faRandom} />
-          <FontAwesomeIcon icon={faStepBackward} size="2x" />
+          <FontAwesomeIcon
+            icon={faStepBackward}
+            size="2x"
+            onClick={() => {
+              dispatch &&
+                dispatch({
+                  type: 'all/prevSong',
+                });
+            }}
+          />
           <FontAwesomeIcon
             icon={playing ? faPauseCircle : faPlayCircle}
             size="3x"
@@ -68,7 +77,16 @@ const PlayBar: React.FC<IPlayBarProps> = ({
               })
             }
           />
-          <FontAwesomeIcon icon={faStepForward} size="2x" />
+          <FontAwesomeIcon
+            icon={faStepForward}
+            size="2x"
+            onClick={() => {
+              dispatch &&
+                dispatch({
+                  type: 'all/nextSong',
+                });
+            }}
+          />
           <FontAwesomeIcon icon={faVolumeDown} />
         </div>
         <div className={styles.playbar_contentRight}>

@@ -89,7 +89,14 @@ const IndexModel: IAllModelType = {
     },
   },
   effects: {
-    *getMusicAllDetailsAndPlay({ payload: id }, { call, put }) {
+    // 通过传入歌曲的id并播放
+    *getMusicAllDetailsAndPlay({ payload: id }, { call, put, select }) {
+      // 如果点击播放的音乐是正在播放的，则不处理
+      const { nowMusicId } = yield select((state: any) => state.all);
+      if (nowMusicId === id) {
+        return;
+      }
+      // 再进行下面逻辑
       yield put({ type: 'setPlaying', payload: false });
       yield put({ type: 'setNowMusicId', payload: id });
       const { data: resMusicUrl } = yield call(apiMusic.getMusicUrl, id);
@@ -102,6 +109,32 @@ const IndexModel: IAllModelType = {
         payload: resMusicDetail.songs[0],
       });
       yield put({ type: 'setPlaying', payload: true });
+    },
+    // 下一首
+    *nextSong({ payload }, { put, select }) {
+      const { playList, nowMusicId } = yield select((state: any) => state.all);
+      let idx = playList.findIndex((item: any) => item.id === nowMusicId);
+      if (idx === playList.length - 1) {
+        // 处理最后一首跳到第一首
+        idx = 0;
+      } else {
+        idx++;
+      }
+      const nextSongId = playList[idx].id;
+      yield put({ type: 'getMusicAllDetailsAndPlay', payload: nextSongId });
+    },
+    // 上一首
+    *prevSong({ payload }, { put, select }) {
+      const { playList, nowMusicId } = yield select((state: any) => state.all);
+      let idx = playList.findIndex((item: any) => item.id === nowMusicId);
+      if (idx === 0) {
+        // 处理第一首跳到最后一首
+        idx = playList.length - 1;
+      } else {
+        idx--;
+      }
+      const prevSongId = playList[idx].id;
+      yield put({ type: 'getMusicAllDetailsAndPlay', payload: prevSongId });
     },
   },
   subscriptions: {
