@@ -35,7 +35,22 @@
       justify-content: space-between;
 
       > :nth-child(1) {
+        cursor: pointer;
         font-size: 18px;
+      }
+
+      .playbar_number {
+        position: relative;
+
+        &::before {
+          content: '1';
+          position: absolute;
+          left: 5px;
+          top: 5px;
+          font-size: 10px;
+          color: #fff;
+          font-weight: bold;
+        }
       }
 
       > :nth-last-child(1) {

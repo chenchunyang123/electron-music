@@ -46,13 +46,20 @@ const Layout: React.FC<ILayoutProps> = ({
         payload: dom,
       });
       // 绑定监听音乐播放的方法
-      dom.ontimeupdate = e => {
+      dom.addEventListener('timeupdate', () => {
         // 因为1s内会触发多次，影响性能，这里后面需要优化
         dispatch({
           type: 'all/setNowMusicTime',
           payload: dom.currentTime,
         });
-      };
+      });
+      // 绑定监听音乐结束的方法
+      dom.addEventListener('ended', () => {
+        dispatch({
+          type: 'all/nextSong',
+          payload: true,
+        });
+      });
     } else {
       console.error('dispatch没传入layout');
     }

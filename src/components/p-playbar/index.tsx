@@ -33,7 +33,7 @@ const PlayBar: React.FC<IPlayBarProps> = ({
   all,
   dispatch,
 }) => {
-  const { playing, nowMusicDetail, nowMusicTime } = all;
+  const { playing, nowMusicDetail, nowMusicTime, cycleType } = all;
   return (
     <div className={classnames(styles.playbar_wrap, classNames)}>
       {/* 进度条 */}
@@ -54,7 +54,17 @@ const PlayBar: React.FC<IPlayBarProps> = ({
           </span>
         </div>
         <div className={styles.playbar_contentCenter}>
-          <FontAwesomeIcon icon={faRandom} />
+          <div
+            className={cycleType === 2 ? styles.playbar_number : ''}
+            onClick={() => {
+              dispatch &&
+                dispatch({
+                  type: 'all/setCycleType',
+                });
+            }}
+          >
+            <FontAwesomeIcon icon={cycleType === 3 ? faRandom : faRedoAlt} />
+          </div>
           <FontAwesomeIcon
             icon={faStepBackward}
             size="2x"
