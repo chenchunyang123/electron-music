@@ -55,4 +55,7 @@ export default {
   getMusicLyric(id: ID) {
     return myAxios.get(`/lyric?id=${id}`);
   },
+  getMusicBanner() {
+    return myAxios.get(`/banner?type=0`);
+  },
 };

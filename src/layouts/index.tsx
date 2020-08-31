@@ -34,6 +34,13 @@ const Layout: React.FC<ILayoutProps> = ({
   const openMmV = () => setMmVisible(true);
   const audioElement = useRef<HTMLAudioElement>(null);
 
+  // 重定向
+  useEffect(() => {
+    if (location.pathname === '/') {
+      history.replace('/musichall/selected');
+    }
+  }, []);
+
   useEffect(() => {
     if (location.pathname === '/mv/detail') {
       return;
