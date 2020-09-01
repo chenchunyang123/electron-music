@@ -1,24 +1,30 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, ReactChild } from 'react';
 import styles from './index.less';
 import classnames from 'classnames';
 
 import VMv from '@/components/v-mv';
+import PMusic from '@/components/p-music';
 
 interface IObjArray {
-  [index: number]: { [props: string]: any };
+  id: number;
+  picUrl: string;
+  name: string;
 }
 
 interface IVwrap {
   title: string;
   list: Array<IObjArray>;
+  type: 'mv' | 'music';
 }
 
-interface IMvDetail {
-  [propName: string]: any;
-}
+const SIZE = {
+  // 每页的个数
+  mv: 3,
+  music: 4,
+};
 
 export default (props: IVwrap) => {
-  const { list, title } = props;
+  const { list, title, type } = props;
   const [page, setPage] = useState(0); // 当前页数
   const [btnsVisible, setVisible] = useState(false); // 翻页按钮显隐
   const wrapEl = useRef<HTMLDivElement>(null); // 获取wrap的dom
@@ -26,6 +32,7 @@ export default (props: IVwrap) => {
     [styles.w_btns]: true,
     [styles.w_visible]: btnsVisible,
   });
+  const pageSize = SIZE[type];
 
   useEffect(() => {
     const onEnter = () => {
@@ -59,9 +66,9 @@ export default (props: IVwrap) => {
         break;
     }
     if (newPage < 0) {
-      newPage = Math.ceil(list.length / 3) - 1;
+      newPage = Math.ceil(list.length / pageSize) - 1;
     } else {
-      newPage = newPage % Math.ceil(list.length / 3);
+      newPage = newPage % Math.ceil(list.length / pageSize);
     }
     setPage(newPage);
   };
@@ -70,9 +77,13 @@ export default (props: IVwrap) => {
     <div className={styles.w_wrap} ref={wrapEl}>
       <h2>{title}</h2>
       <div className={styles.w_container}>
-        {list.slice(page * 3, page * 3 + 3).map((item: IMvDetail) => (
-          <VMv key={item.id} detail={item} />
-        ))}
+        {list.slice(page * pageSize, page * pageSize + pageSize).map(item => {
+          return type === 'music' ? (
+            <PMusic key={item.id} detail={item} />
+          ) : (
+            <VMv key={item.id} detail={item} />
+          );
+        })}
       </div>
       <div className={btnsStyle}>
         <div

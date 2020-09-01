@@ -4,6 +4,7 @@ type GetSingerListType = -1 | 1 | 2 | 3;
 type GetSingerListArea = -1 | 7 | 96 | 8 | 16 | 0;
 type GetSingerListInitial = -1 | 0 | string;
 type ID = number | string;
+type GetNewSongType = 0 | 7 | 8 | 16 | 96;
 
 export default {
   getSingerList(
@@ -57,5 +58,11 @@ export default {
   },
   getMusicBanner() {
     return myAxios.get(`/banner?type=0`);
+  },
+  getRecommendPlayList(limit: number = 30) {
+    return myAxios.get(`/personalized?limit=${limit}`);
+  },
+  getNewSongList(type: GetNewSongType) {
+    return myAxios.get(`/top/song?type=${type}`);
   },
 };

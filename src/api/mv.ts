@@ -16,8 +16,13 @@ export default {
   getMvDetail(id: number) {
     return myAxios.get(`/mv/detail?mvid=${id}`);
   },
-  getMvRanking(area: '内地' | '港台' | '欧美' | '日本' | '韩国' | '总榜') {
-    return myAxios.get(`/top/mv?limit=20&area=${area === '总榜' ? '' : area}`);
+  getMvRanking(
+    area: '内地' | '港台' | '欧美' | '日本' | '韩国' | '总榜',
+    limit: number = 20,
+  ) {
+    return myAxios.get(
+      `/top/mv?limit=${limit}&area=${area === '总榜' ? '' : area}`,
+    );
   },
   getAllMv(
     area: '全部' | '内地' | '港台' | '欧美' | '日本' | '韩国',

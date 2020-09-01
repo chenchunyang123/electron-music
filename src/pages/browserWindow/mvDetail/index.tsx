@@ -30,7 +30,6 @@ export default ({ location }: IRouteComponentProps) => {
     });
     apiMv.getMvDetail(id).then(res => {
       const { data } = res.data;
-      console.log(data);
       setDetail(data);
     });
   }, []);

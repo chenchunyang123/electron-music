@@ -15,7 +15,6 @@ export default (props: { list: IList }) => {
     [styles.banner_visible]: btnsVisible,
   });
   const { list } = props;
-  console.log(list);
 
   useEffect(() => {
     const onEnter = () => {
