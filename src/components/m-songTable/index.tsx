@@ -84,7 +84,7 @@ class Demo extends React.Component {
   };
 
   render() {
-    const { list } = this.props;
+    const { list = [] } = this.props;
     const data = list.map((item, idx) => {
       return {
         key: idx,

@@ -83,6 +83,11 @@ export default defineConfig({
           path: '/singer/albums',
           component: '@/pages/musicHall/singer/albums/index',
         },
+        {
+          exact: true,
+          path: '/singlist/detail',
+          component: '@/pages/musicHall/singList/index',
+        },
       ],
     },
   ],

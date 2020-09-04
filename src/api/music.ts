@@ -65,4 +65,13 @@ export default {
   getNewSongList(type: GetNewSongType) {
     return myAxios.get(`/top/song?type=${type}`);
   },
+  getAllRankingList() {
+    return myAxios.get('/toplist');
+  },
+  getPlayListDetail(id: ID) {
+    return myAxios.get(`/playlist/detail?id=${id}`);
+  },
+  getPlayListComments(id: ID) {
+    return myAxios.get(`/comment/playlist?id=${id}`);
+  },
 };

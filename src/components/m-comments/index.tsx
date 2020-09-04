@@ -39,7 +39,7 @@ const OneComment = (props: { commentDetail: {} }) => {
 
 export default (props: { commentObj: any }) => {
   const { commentObj } = props;
-  const { comments, hotComments } = commentObj;
+  const { comments = [], hotComments = [] } = commentObj;
   return (
     <div className={styles.ac_wrap}>
       {/* <div className={styles.ac_textWrap}>
@@ -50,20 +50,24 @@ export default (props: { commentObj: any }) => {
       </div> */}
       {/* 评论列表 */}
       <div className={styles.ac_commentsList}>
-        <div className={styles.ac_hotComments}>
-          <h4>热门评论</h4>
-          {hotComments &&
-            (hotComments as []).map((item, idx) => (
-              <OneComment commentDetail={item} key={idx} />
-            ))}
-        </div>
-        <div className={styles.ac_recentComments}>
-          <h4>最新评论</h4>
-          {comments &&
-            (comments as []).map((item, idx) => (
-              <OneComment commentDetail={item} key={idx} />
-            ))}
-        </div>
+        {hotComments.length ? (
+          <div className={styles.ac_hotComments}>
+            <h4>热门评论</h4>
+            {hotComments &&
+              (hotComments as []).map((item, idx) => (
+                <OneComment commentDetail={item} key={idx} />
+              ))}
+          </div>
+        ) : null}
+        {comments.length ? (
+          <div className={styles.ac_recentComments}>
+            <h4>最新评论</h4>
+            {comments &&
+              (comments as []).map((item, idx) => (
+                <OneComment commentDetail={item} key={idx} />
+              ))}
+          </div>
+        ) : null}
       </div>
     </div>
   );

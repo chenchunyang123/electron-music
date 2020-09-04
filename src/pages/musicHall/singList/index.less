@@ -1,0 +1,132 @@
+.sl_wrap {
+  width: 100%;
+  margin-top: 20px;
+
+  .sl_top {
+    width: 100%;
+    display: flex;
+
+    img {
+      width: 170px;
+      height: 175px;
+      margin-right: 30px;
+      border-radius: 10px;
+    }
+
+    .sl_desc {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      h2 {
+        font-size: 34px;
+        color: #fff;
+        margin-bottom: 0;
+      }
+
+      .sl_btnsWrap {
+        display: flex;
+
+        div {
+          padding: 0 20px;
+          height: 30px;
+          line-height: 24px;
+          border: 1px solid red;
+          border-radius: 30px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+// 专辑信息
+.ad_wrap {
+  width: 100%;
+  color: #fff;
+  white-space: pre-wrap;
+
+  div {
+    color: rgb(36, 196, 130);
+  }
+}
+
+// 评论
+.ac_wrap {
+  width: 100%;
+
+  // .ac_textWrap {
+  //   width: 100%;
+
+  //   textarea {
+  //     width: 100%;
+  //     resize: none;
+  //   }
+  // }
+
+  // .btnsWrap {
+  //   width: 100%;
+  //   display: flex;
+
+  //   div {
+  //     padding: 0 20px;
+  //     height: 30px;
+  //     line-height: 24px;
+  //     color: #fff;
+  //     border: 1px solid red;
+  //     border-radius: 30px;
+  //     cursor: pointer;
+  //   }
+  // }
+
+  .ac_commentsList {
+    color: #fff;
+
+    h4 {
+      color: #fff;
+    }
+  }
+}
+
+// 一条评论的组件
+.oc_wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  img {
+    flex-shrink: 0;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+
+  .oc_des {
+    line-height: 1.5;
+    flex-grow: 1;
+
+    .oc_nickname {
+      color: #999;
+    }
+
+    .oc_replyTo {
+      width: 100%;
+      background-color: #333;
+      padding: 5px 0 5px 10px !important;
+      margin-top: 5px !important;
+      line-height: 20px;
+      border-radius: 5px;
+    }
+  }
+}
+.oc_bottomWrap {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  color: #999;
+  border-bottom: 1px solid #999;
+  padding-bottom: 10px;
+  margin-left: 45px;
+  margin-bottom: 20px;
+}
