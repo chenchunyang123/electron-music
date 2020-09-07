@@ -88,6 +88,11 @@ export default defineConfig({
           path: '/singlist/detail',
           component: '@/pages/musicHall/singList/index',
         },
+        {
+          exact: true,
+          path: '/singlist/types/all',
+          component: '@/pages/musicHall/types/all/index',
+        },
       ],
     },
   ],

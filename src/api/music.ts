@@ -74,4 +74,21 @@ export default {
   getPlayListComments(id: ID) {
     return myAxios.get(`/comment/playlist?id=${id}`);
   },
+  getPlayListAllTypes() {
+    return myAxios.get(`/playlist/catlist`);
+  },
+  getPlayListHotTypes() {
+    return myAxios.get(`/playlist/hot`);
+  },
+  getPlayList(params: {
+    cat: string;
+    limit: number;
+    offset: number;
+    order: 'new' | 'hot';
+  }) {
+    const { cat, limit, offset, order } = params;
+    return myAxios.get(
+      `/top/playlist?cat=${cat}&limit=${limit}&offset=${offset}&order=${order}`,
+    );
+  },
 };
