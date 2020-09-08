@@ -93,6 +93,11 @@ export default defineConfig({
           path: '/singlist/types/all',
           component: '@/pages/musicHall/types/all/index',
         },
+        {
+          exact: true,
+          path: '/singlist/types/:type',
+          component: '@/pages/musicHall/types/type/index',
+        },
       ],
     },
   ],

@@ -1,15 +1,22 @@
 .ta_wrap {
   table {
-    border: 1px solid #666;
-    border-radius: 5px;
+    border: 1px solid rgb(52, 52, 53);
+    border-radius: 20px;
     border-collapse: collapse;
+    margin-bottom: 20px;
 
     td {
       width: 110px;
-      border: 1px solid #666;
+      border: 1px solid rgb(52, 52, 53);
       border-width: 0px 1px 1px 0px;
       text-align: center;
-      cursor: pointer;
+      padding: 10px 0;
+      background-color: rgb(36, 36, 37);
+
+      &.ta_trItem:hover {
+        background-color: rgb(45, 45, 46);
+        cursor: pointer;
+      }
     }
   }
 }

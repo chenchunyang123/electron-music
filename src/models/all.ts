@@ -122,7 +122,10 @@ const IndexModel: IAllModelType = {
       const { data: resMusicLyric } = yield call(apiMusic.getMusicLyric, id);
       const { data: resMusicDetail } = yield call(apiMusic.getMusicDetail, id);
       yield put({ type: 'setNowMusicUrl', payload: resMusicUrl.data[0].url });
-      yield put({ type: 'setNowMusicLyric', payload: resMusicLyric.lrc.lyric });
+      yield put({
+        type: 'setNowMusicLyric',
+        payload: resMusicLyric.lrc?.lyric,
+      });
       yield put({
         type: 'setNowMusicDetail',
         payload: resMusicDetail.songs[0],

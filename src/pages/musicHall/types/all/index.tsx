@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.less';
+import { history } from 'umi';
 
 import { apiMusic } from '@/api';
 
@@ -35,6 +36,7 @@ export default () => {
 
   return (
     <div className={styles.ta_wrap}>
+      <h1>全部分类</h1>
       {allTypes.map((item, idx) => (
         <table key={idx}>
           <tbody>
@@ -42,8 +44,16 @@ export default () => {
               return (
                 <tr key={childIdx}>
                   {childIdx === 0 ? <td rowSpan={0}>{item.title}</td> : null}
-                  {child.map(item => (
-                    <td>{item.name}</td>
+                  {child.map((item, childChildIdx) => (
+                    <td
+                      key={childChildIdx}
+                      className={styles.ta_trItem}
+                      onClick={() =>
+                        history.push(`/singlist/types/${item.name}`)
+                      }
+                    >
+                      {item.name}
+                    </td>
                   ))}
                 </tr>
               );

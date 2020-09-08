@@ -81,12 +81,12 @@ export default {
     return myAxios.get(`/playlist/hot`);
   },
   getPlayList(params: {
-    cat: string;
-    limit: number;
-    offset: number;
-    order: 'new' | 'hot';
+    cat?: string;
+    limit?: number;
+    offset?: number;
+    order?: 'new' | 'hot';
   }) {
-    const { cat, limit, offset, order } = params;
+    const { cat = '全部', limit = 12, offset = 1, order = 'hot' } = params;
     return myAxios.get(
       `/top/playlist?cat=${cat}&limit=${limit}&offset=${offset}&order=${order}`,
     );

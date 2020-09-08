@@ -4,13 +4,15 @@ import { history } from 'umi';
 
 import { apiMusic } from '@/api';
 import { AxiosResponse } from 'axios';
+import PlayList from './playList';
 
 const TypeItem = (props: { text: string }) => {
   const { text } = props;
   const handleFunc = () => {
-    console.log(text);
     if (text === '全部') {
       history.push('/singlist/types/all');
+    } else {
+      history.push(`/singlist/types/${text}`);
     }
   };
   return (
@@ -41,7 +43,10 @@ export default () => {
           <TypeItem key={idx} text={item} />
         ))}
       </div>
-      <div className={styles.ts_songsList}></div>
+      <div className={styles.ts_songsList}>
+        <h3>精选歌单</h3>
+        <PlayList />
+      </div>
     </div>
   );
 };
